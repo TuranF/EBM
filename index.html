@@ -3,298 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>SmartHome</title>
+
+<link rel="stylesheet" type="text/css" href="style/main.css">
+<link href="style/style.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="style/uniform.css" media="screen" rel="stylesheet" type="text/css"/>
+
+<!-- NOTE / TODO: For performance reason non prioriate js should be loaded after site is interpreted (athr tobiasstraub) -->
+<script type="text/javascript" src="js/navi_handling.js"></script>
+<script type="text/javascript" src="js/time.js"></script>
+<script type="text/javascript" src="js/jquery.tools.js"></script>
+<script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 </head>
 
 
 
-<style> 
-
-.wrapper {
-    position: relative;
-    width: 400px;
-    padding: 50px;
-    margin: 0px 5px;
-   
-    }
-
-.buttons {
-    position: relative;
-    margin: 0px 0px;
-    overflow: auto;
-    z-index: 900;
-    }
-
-.button {
-    display: block;
-    width: 25%;
-    float: left;
-    padding: 5px;
-    color: #333;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    background: #eee;
-    -moz-box-shadow: inset 0 0 10px #ccc;
-    -webkit-box-shadow: inset 0 0 10px #ccc;
-    box-shadow: inset 0 0 10px #ccc;
-    }
-	
-.button.button-active,
-.button:hover {
-    border-left: 1px solid #fff;
-    color: #eee;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    background: #6AD400;;
-    -webkit-transition: background 0.2s ease-out;
-    -moz-transition: background 0.2s ease-out;
-    transition: background 0.2s ease-out;
-    }
-
-.button:first-child {
-    border-left: none;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    }
-
-.button:last-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    }
-	
-</style>
-
-
-
-
-
-
-
-<!-------------------------------->
-<!--FUNKTION FÜR DIE ZEITANZEIGE-->
-<!-------------------------------->
-<script type="text/javascript">
-function updateTime() {
-
-	var date = new Date();
-	var stunden = date.getHours();
-	var minuten = date.getMinutes();
-	var tag = date.getDate();
-	var monatDesJahres = date.getMonth();
-	var jahr = date.getFullYear();
-	var tagInWoche = date.getDay();
-	var wochentag = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
-	var monat = new Array("Januar", "Februar", "M&auml;rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
-
-	var datum = wochentag[tagInWoche] + ", " + tag + ". " + monat[monatDesJahres] + " " + jahr + " " + stunden + ":" + minuten;
-
-	document.getElementById('time').innerHTML = datum;
-	setTimeout(updateTime, 60000);
-}
-
-window.addEventListener("load", updateTime);
-</script>
-
-
-
-
-<!------------------------------------>
-<!--FUNKTION FÜR DAS NAVIGATIONSMENÜ-->
-<!------------------------------------>
-<script language="JavaScript" type="text/javascript">
-function meineGeraete(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function geraeteAufnehmen(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function geraeteLoeschen(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function energievergleichRaeume(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function energievergleichJahr(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function energievergleichGeraete(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function geraeteVergleiche(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle8').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script language="JavaScript" type="text/javascript">
-function durchschnittsVergleiche(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggle1').style.display = 'none';
-  document.getElementById('toggle2').style.display = 'none';
-  document.getElementById('toggle3').style.display = 'none';
-  document.getElementById('toggle4').style.display = 'none';
-  document.getElementById('toggle5').style.display = 'none';
-  document.getElementById('toggle6').style.display = 'none';
-  document.getElementById('toggle7').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-
-
-
-<!--------------------------------------------------->
-<!--BUTTONS FUNKTION FÜR DEN EIGENEN RÄUMEVERGLEICH-->
-<!--------------------------------------------------->
-<script type="text/javascript">
-function diagTag(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggleW').style.display = 'none';
-  document.getElementById('toggleM').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-	
-}
-</script>
-
-<script type="text/javascript">
-function diagWoche(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggleT').style.display = 'none';
-  document.getElementById('toggleM').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-<script type="text/javascript">
-function diagMonat(element){
-
- if(document.getElementById(element).style.display == 'none')
-  document.getElementById('toggleT').style.display = 'none';
-  document.getElementById('toggleW').style.display = 'none';
-	document.getElementById(element).style.display = 'block';
-}
-</script>
-
-
-
-
-<!---------------------------------------------------------------------->
-<!--FUNKTION FÜR DEN AKTUELLEN VERBRAUCH (DIAGRAMM) AUF DER HOME SEITE-->
-<!---------------------------------------------------------------------->
-
-
-
-	
-	
-<!----------------------------->
-<!--FUNKTION GERÄTE AUFNHEMEN-->
-<!----------------------------->	
-	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css"/>
-    <link href="css/uniform.css" media="screen" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.tools.js"></script>
-    <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-	
-	
-	
 <!---------------------------->
-<!--FUNKTION VERGLEICH RÄUME-->
-<!---------------------------->	
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!--FUNKTION VERGLEICH Rï¿½UME-->
+<!---------------------------->
 		<style type="text/css">
 ${demo.css}
 		</style>
@@ -358,8 +85,8 @@ $(function () {
     });
 });
 		</script>
-		
-		
+
+
 
 		<style type="text/css">
 ${demo.css}
@@ -424,9 +151,9 @@ $(function () {
     });
 });
 		</script>
-		
-		
-	
+
+
+
 		<style type="text/css">
 ${demo.css}
 		</style>
@@ -491,13 +218,13 @@ $(function () {
 });
 		</script>
 
-	
-	
-	
+
+
+
 <!---------------------------------->
 <!--FUNKTION ENERGIEVERGLEICH JAHR-->
-<!---------------------------------->	
-	    		
+<!---------------------------------->
+
 		<style type="text/css">
 		${demo.css}
 		</style>
@@ -539,8 +266,8 @@ $(function () {
     });
 });
 		</script>
-	
-	
+
+
 <body>
 
 
@@ -548,26 +275,26 @@ $(function () {
 <!----------------------------->
 <!--LOGO GROWSMARTER MIT LINK-->
 <!----------------------------->
-<a href="http://www.grow-smarter.eu/home/"><img src="Grow-Smarter.jpg" alt="GrowSmarter" style="width:190px; height:60px; position: absolute; top: 80px; left: 1110px;"></a>
+<a href="http://www.grow-smarter.eu/home/"><img src="img/grow_smarter.jpg" alt="GrowSmarter" style="width:190px; height:60px; position: absolute; top: 80px; left: 1110px;"></a>
 
 
 
 
 <!-------------------->
-<!--OBERE MENÜLEISTE-->
+<!--OBERE MENï¿½LEISTE-->
 <!-------------------->
 <div id="menubox" style="background-color: white; position:fixed; width:1400px; height:70px; margin-top: -10px; margin-left: -10px; margin-right: -10px; box-shadow: 0px 0px 12px grey;">
 </div>
 
 <div id="menu-punkte" style="position:fixed; width:1400px; height:50px; margin-left: -10px; margin-right: -10px; font-family: verdana; font-size: 15px; color: #6AD400;">
 
-<div style="line-height:40px; position: absolute; left:70px; top:2px; width:150px; height:10px; float:left; ">	
+<div style="line-height:40px; position: absolute; left:70px; top:2px; width:150px; height:10px; float:left; ">
 
-<a href="SmartHome1.1.html" style="text-decoration:none"><img src="Home.jpg" alt="Home"></a>
+<a href="SmartHome1.1.html" style="text-decoration:none"><img src="img/home.jpg" alt="Home"></a>
 </div>
 
 <div style="line-height:40px; position: absolute; left:280px; top:2px; width:160px; height:10px; float:left;">
-<span title="Die BenutzerID ist eine benutzerspezifische Kennung mit der jeder Benutzer identifizierbar ist" style="width:10px;">BenutzerID</span> 
+<span title="Die BenutzerID ist eine benutzerspezifische Kennung mit der jeder Benutzer identifizierbar ist" style="width:10px;">BenutzerID</span>
 </div>
 
 <div style="line-height:40px; position: absolute; left:500px; top:2px; width:160px; height:10px; float:left;">
@@ -590,7 +317,7 @@ Aktueller Verbrauch
 <!--HINTERGRUNDBILD PUSTEBLUME-->
 <!------------------------------>
 <div id="bild" style="background-color: white; background-repeat:no-repeat; background-position: center; background-size: 100%; height: 600px; position: static;  margin-left: -10px; margin-right: -10px; margin-bottom: 30px;">
-<img src="009.jpg" alt="Energie" style="width:1360px; height:600px; box-shadow: 0px 0px 12px grey; ">
+<img src="img/header_bgr.jpg" alt="Energie" style="width:1360px; height:600px; box-shadow: 0px 0px 12px grey; ">
 </div>
 
 
@@ -606,11 +333,11 @@ Aktueller Verbrauch
 
 
 <!-------------------------------------------------->
-<!--NAVIGATIONSMENÜ: FUNKTIONEN DAZU IN JAVASCRIPT-->
+<!--NAVIGATIONSMENï¿½: FUNKTIONEN DAZU IN JAVASCRIPT-->
 <!-------------------------------------------------->
 <div id="diagr" style="position: absolute; z-index: -1;top:700px; width:285px; height:600px; padding-top: 60px; padding-left: 30px; float:left; box-shadow: 0px 0px 13px grey;">
 </div>
-<div style="line-height:40px; position: absolute; z-index: -1; left:30px; top:780px; width:200px; height:10px; float:left; font-family: verdana; font-size: 15px; font-weight: bold; color: #6AD400; ">	
+<div style="line-height:40px; position: absolute; z-index: -1; left:30px; top:780px; width:200px; height:10px; float:left; font-family: verdana; font-size: 15px; font-weight: bold; color: #6AD400; ">
 Mein Profil
 </div>
 	<div style="line-height:40px; position: absolute; z-index: -1; left:60px; top:810px; width:200px; height:10px; float:left; font-family: verdana; font-size: 14px; color: #6AD400;">
@@ -635,7 +362,7 @@ Eigene Verbr&auml;uche
 	<div style="line-height:40px; position: absolute; z-index: -1; left:60px; top:1020px; width:200px; height:10px; float:left; font-family: verdana; font-size: 14px; color: #6AD400;">
 	<a href="javascript:energievergleichGeraete('toggle6');" style="text-decoration:none"><span style="color: #6AD400;">Energievergleich Ger&auml;te</span></a>
 	</div>
-	
+
 <div style="line-height:40px; position: absolute; z-index: -1; left:30px; top:1080px; width:300px; height:10px; float:left; font-family: verdana; font-size: 15px; font-weight: bold; color: #6AD400;">
 Vergleiche zu anderen Haushalten
 </div>
@@ -647,8 +374,8 @@ Vergleiche zu anderen Haushalten
 	</div>
 
 
-<!---------------------------------------------->	
-<!--ANZEIGEBOX FÜR DIE AUSGWEÄHLTEN MENÜPUNKTE-->
+<!---------------------------------------------->
+<!--ANZEIGEBOX Fï¿½R DIE AUSGWEï¿½HLTEN MENï¿½PUNKTE-->
 <!---------------------------------------------->
 <div id="diagr" style="line-height:40px; position: absolute; z-index: -1; left:330px; top:700px; width:1000px; height:610px; padding-top: 50px; float:left;font-family: verdana; font-style: italic; font-style: bold; font-size: 16px; font-weight: bold; color: black; box-shadow: 0px 0px 13px grey;">
 	 <!--
@@ -656,38 +383,38 @@ Vergleiche zu anderen Haushalten
 	 <div id="chart_div" style="width: 400px; height: 120px;"></div>
 	 </div>
 	 -->
-	 
-	 
-	<!--ANZEIGE VON MEINE GERÄTE-->
+
+
+	<!--ANZEIGE VON MEINE GERï¿½TE-->
 	<div id="toggle1" style="display:none; padding-left: 100px;">Meine Ger&auml;te</div>
-	
-	
-	<!--ANZEIGE VON GERÄTE AUFNEHMEN-->
+
+
+	<!--ANZEIGE VON GERï¿½TE AUFNEHMEN-->
 	<div id="toggle2"  style="display:none; padding-left: 100px;">
 	<!--
-	Ampelsystem bei der Aufnahme von Geräten
-	--> 
+	Ampelsystem bei der Aufnahme von Gerï¿½ten
+	-->
 	<div class="TTWForm-container">
-     
-     
+
+
      <div id="form-title" class="form-title field">
           <h2>
                Ger&auml;t aufnehmen
           </h2>
      </div>
-     
-     
+
+
      <form action="process_form.php" class="TTWForm" method="post" novalidate="">
-          
-          
+
+
           <div id="field12-container" class="field f_100">
                <label for="field12">
                     Name des Ger&auml;tes
                </label>
                <input name="Textfeld1" id="field12" required="required" type="text">
           </div>
-          
-          
+
+
           <div id="field13-container" class="field f_100">
                <label for="field13">
                     Ort
@@ -699,7 +426,7 @@ Vergleiche zu anderen Haushalten
                     <option id="field13-2" value="Schlafzimmer">
                          Schlafzimmer
                     </option>
-                    <option id="field13-3" value="Küche">
+                    <option id="field13-3" value="Kï¿½che">
                          K&uuml;che
                     </option>
                     <option name="Auswahlfeld1" id="Auswahlfeld1-4" value="Esszimmer">
@@ -708,7 +435,7 @@ Vergleiche zu anderen Haushalten
                     <option name="Auswahlfeld1" id="Auswahlfeld1-5" value="Badezimmer">
                          Badezimmer
                     </option>
-                    <option name="Auswahlfeld1" id="Auswahlfeld1-6" value="Büro">
+                    <option name="Auswahlfeld1" id="Auswahlfeld1-6" value="Bï¿½ro">
                          B&uuml;ro
                     </option>
                     <option name="Auswahlfeld1" id="Auswahlfeld1-7" value="Keller">
@@ -719,8 +446,8 @@ Vergleiche zu anderen Haushalten
                     </option>
                </select>
           </div>
-          
-          
+
+
           <div id="field14-container" class="field f_100">
                <label for="field14">
                     Ger&auml;tetyp
@@ -740,7 +467,7 @@ Vergleiche zu anderen Haushalten
                          Unterhaltung
                     </option>
 					</optgroup>
-					
+
 					<optgroup label="K&uuml;chenger&auml;te">
                     <option name="Auswahlfeld2" id="Auswahlfeld2-5" value="Mikrowelle">
                          Mikrowelle
@@ -751,11 +478,11 @@ Vergleiche zu anderen Haushalten
                     <option name="Auswahlfeld2" id="Auswahlfeld2-7" value="Wasserkocher">
                          Wasserkocher
                     </option>
-                    <option name="Auswahlfeld2" id="Auswahlfeld2-8" value="Mixer/Rührer">
+                    <option name="Auswahlfeld2" id="Auswahlfeld2-8" value="Mixer/Rï¿½hrer">
                          Mixer/R&uuml;hrer
                     </option>
 					</optgroup>
-					
+
 					<optgroup label="Beleuchtung">
                     <option name="Auswahlfeld2" id="Auswahlfeld2-9" value="Stehlampe">
                          Stehlampe
@@ -764,9 +491,9 @@ Vergleiche zu anderen Haushalten
                          Tischlampe
                     </option>
 					</optgroup>
-					
+
 					<optgroup label="Sonstige Ger&auml;te">
-                    <option name="Auswahlfeld2" id="Auswahlfeld2-11" value="Föhn">
+                    <option name="Auswahlfeld2" id="Auswahlfeld2-11" value="Fï¿½hn">
                          F&ouml;hn
                     </option>
                     <option name="Auswahlfeld2" id="Auswahlfeld2-12" value="Staubsauger">
@@ -790,15 +517,15 @@ Vergleiche zu anderen Haushalten
      </form>
 	</div>
 	</div>
-	
-	
-	<!--ANZEIGE VON GERÄTE LÖSCHEN-->
+
+
+	<!--ANZEIGE VON GERï¿½TE Lï¿½SCHEN-->
 	<div id="toggle3"  style="display:none; padding-left: 100px;">Ger&auml;te l&ouml;schen</div>
-	
-	
-	<!--ANZEIGE VON ENERGIEVERBRAUCH RÄUME-->
+
+
+	<!--ANZEIGE VON ENERGIEVERBRAUCH Rï¿½UME-->
 	<div id="toggle4"  style="display:none; padding-left: 100px;">Energievergleich der R&auml;ume des eigenen Haushalts
-	
+
 	<div class="wrapper" style="padding-left: 170px;">
 	<div class="buttons" style=" font-size: 14px; position: relative; padding-left: -100px;">
         <a class="button" href="javascript:diagTag('toggleT');" style="text-decoration:none" >Tag</a>
@@ -819,28 +546,28 @@ Vergleiche zu anderen Haushalten
 
 	<div id="toggleM"  style="display:none;">
 		<script src="js-charts/highcharts.js"></script>
-		
+
 		<div id="energieVergleichRaeumeMonat" style="min-width: 610px; height: 400px; max-width: 800px; margin: 0 auto"></div>
 	</div>
 
 	</div>
-	
-	
+
+
 	<!--ANZEIGE VON ENERGIEVERGLEICH JAHR-->
 	<div id="toggle5"  style="display:none; padding-left: 100px;">Energievergleich Jahr
 	<script src="js-charts/highcharts.js"></script>
-	
+
 	<div id="energievergleichJahr" style="min-width: 710px; height: 400px; padding-top: 70px;"></div>
 	</div>
-	
-	<!--ANZEIGE VON ENERGIEVERGLEICH GERÄTE-->
+
+	<!--ANZEIGE VON ENERGIEVERGLEICH GERï¿½TE-->
 	<div id="toggle6"  style="display:none; padding-left: 100px;">Energievergleich Ger&auml;te</div>
-	
-	
-	<!--ANZEIGE VON GERÄTEVERGLEICHE-->
+
+
+	<!--ANZEIGE VON GERï¿½TEVERGLEICHE-->
 	<div id="toggle7" style="display:none; padding-left: 100px;">Ger&auml;tevergleiche</div>
-	
-	
+
+
 	<!--ANZEIGE VON MEINE DURCHSCHNITTSVERGLEICH-->
 	<div id="toggle8" style="display:none; padding-left: 100px;">Durchschnittsvergleiche</div>
 </div>
@@ -854,7 +581,7 @@ Vergleiche zu anderen Haushalten
 <div id="links" style=" background-color: #6AD400; opacity: 0.9; position:absolute; top: 1500px; width:1400px; height:150px; margin-left: -10px; margin-right: -10px; box-shadow: 0px 0px 13px grey;">
 </div>
 
-<div style="line-height:40px; position: absolute; left:170px; top:1520px; width:104px; height:10px; float:left; font-family: verdana; font-size: 14px; font-weight: bold; color: white;">	
+<div style="line-height:40px; position: absolute; left:170px; top:1520px; width:104px; height:10px; float:left; font-family: verdana; font-size: 14px; font-weight: bold; color: white;">
 <a href="Energievergleich.html" style="text-decoration:none"><span style="color: white;">Kontakt</span></a>
 </div>
 
@@ -880,4 +607,4 @@ Vergleiche zu anderen Haushalten
 
 
 </body>
-</html> 
+</html>

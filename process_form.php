@@ -1,6 +1,4 @@
 <?php
-
-
 $form = new ProcessForm();
 $form->field_rules = array(
 	'Textfeld1'=>'required',
@@ -16,10 +14,6 @@ class ProcessForm
     public $fields;
     private $error_list;
     private $is_xhr;
-
-
-
-
 
     function __construct()
     {
@@ -38,10 +32,6 @@ class ProcessForm
         $this->fields = $_POST;
         $this->is_xhr = $this->xhr();
     }
-
-
-
-
 
     function validate()
     {
